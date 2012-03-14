@@ -7,10 +7,19 @@ from PyQt4.QtTest import QTest
 from PyQt4.QtCore import Qt
 
 import taskdlg
-from model import *
-setup_all()
-create_all()
+import model
+import config
 
+@before.each_feature
+def setUp(self):
+    config.connect_string = 'sqlite:///:memory:' 
+    config.echo = True
+    model.init()
+    
+@after.each_feature
+def tearDown(self):
+    model.reset()
+        
 @step(u'Given that I have a task editor')
 def given_that_i_have_a_task_editor(step):
     world.app = QApplication(sys.argv)
@@ -27,7 +36,7 @@ def and_i_press_the_ok_button(step):
 
 @step(u'Then I see "([^"]*)"')
 def then_i_see_group1(step, group1):
-    task = Task.query.first()
-    assert task.name == group1, \
-        'Got %s' % task.name
+    task = model.Task.query.first()
+    assert task.description == group1, \
+        'Got %s' % task.description
 
