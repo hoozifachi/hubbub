@@ -1,11 +1,14 @@
 from elixir import metadata, setup_all, create_all, session, drop_all
 from task import Task
+from columndescriptor import ColumnDescriptor
 import config
 
+connect_string = ''
+echo = False
 
 def init():
-    metadata.bind = config.connect_string
-    metadata.bind.echo = config.echo
+    metadata.bind = connect_string
+    metadata.bind.echo = echo
     setup_all()
     create_all()
     

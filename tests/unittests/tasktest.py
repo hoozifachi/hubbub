@@ -11,8 +11,8 @@ class TaskTest(unittest.TestCase):
 
 
     def setUp(self):
-        config.connect_string = 'sqlite:///:memory:' 
-        config.echo = True
+        model.connect_string = 'sqlite:///:memory:' 
+        model.echo = True
         model.init()
         
 
@@ -20,9 +20,49 @@ class TaskTest(unittest.TestCase):
         model.reset()
         
 
-    def testGetDescription(self):
+    def testGetName(self):
         task = model.Task('task1')
-        self.assertEqual('task1', task.description)
+        self.assertEqual('task1', task.name)
+        
+        
+    def testGetCategory(self):
+        task = model.Task('task1', True, 'category1')
+        self.assertEqual('category1', task.category)
+        
+        
+    def testGetDay0Time(self):
+        task = model.Task('task1')
+        self.assertEqual(0, task.mondayTime)
+        
+
+    def testGetDay1Time(self):
+        task = model.Task('task1')
+        self.assertEqual(0, task.tuesdayTime)
+
+
+    def testGetDay2Time(self):
+        task = model.Task('task1')
+        self.assertEqual(0, task.wednesdayTime)
+
+
+    def testGetDay3Time(self):
+        task = model.Task('task1')
+        self.assertEqual(0, task.thursdayTime)
+
+
+    def testGetDay4Time(self):
+        task = model.Task('task1')
+        self.assertEqual(0, task.fridayTime)
+
+
+    def testGetDay5Time(self):
+        task = model.Task('task1')
+        self.assertEqual(0, task.saturdayTime)
+
+
+    def testGetDay6Time(self):
+        task = model.Task('task1')
+        self.assertEqual(0, task.sundayTime)
 
 
     def testGetID(self):
@@ -31,9 +71,11 @@ class TaskTest(unittest.TestCase):
         self.assertEqual(1, task.id)
         
         
-    def testGetIsCompleted(self):
-        task = model.Task('task1')
-        self.assertEqual(False, task.is_completed)
+    def testTaskIsSaved(self):
+        model.Task('task1', True)
+        model.commit()
+        retTask = model.Task.query.first()
+        self.assertEqual('task1', retTask.name)
                 
         
 if __name__ == "__main__":
