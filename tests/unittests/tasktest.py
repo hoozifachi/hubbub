@@ -3,7 +3,6 @@ Created on Mar 13, 2012
 
 @author: jason
 '''
-import config
 import model
 import unittest
 
@@ -26,7 +25,7 @@ class TaskTest(unittest.TestCase):
         
         
     def testGetCategory(self):
-        task = model.Task('task1', True, 'category1')
+        task = model.Task('task1', 'category1')
         self.assertEqual('category1', task.category)
         
         

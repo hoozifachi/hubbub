@@ -11,7 +11,9 @@ class ColumnDescriptorTest(unittest.TestCase):
 
 
     def setUp(self):
-        pass
+        self.descriptor = model.ColumnDescriptor('field_one', 
+                                                 'Field one',
+                                                 'comment')
 
 
     def tearDown(self):
@@ -19,19 +21,15 @@ class ColumnDescriptorTest(unittest.TestCase):
 
 
     def testGetID(self):
-        descriptor = model.ColumnDescriptor('field_one')
-        self.assertEqual('field_one', descriptor.id)
+        self.assertEqual('field_one', self.descriptor.id)
         
         
     def testGetVerboseName(self):
-        descriptor = model.ColumnDescriptor('field_one')
-        self.assertEqual('Field one', descriptor.verbose_name)
+        self.assertEqual('Field one', self.descriptor.verbose_name)
         
         
     def testGetComment(self):
-        descriptor = model.ColumnDescriptor('field_one')
-        descriptor.comment = 'test'
-        self.assertEqual('test', descriptor.comment)
+        self.assertEqual('comment', self.descriptor.comment)
 
 
 if __name__ == "__main__":

@@ -5,7 +5,7 @@ Created on Mar 13, 2012
 '''
 from elixir.entity import Entity
 from elixir.fields import Field
-from sqlalchemy.types import String, Boolean, Unicode, Numeric
+from sqlalchemy.types import Unicode, Numeric
 
 class Task(Entity):
     name = Field(Unicode(50))
@@ -19,9 +19,8 @@ class Task(Entity):
     sundayTime = Field(Numeric(4, 2, True))
     
     
-    def __init__(self, name, is_completed=False, category=''):
+    def __init__(self, name, category=''):
         self.name = name
-        self.is_completed = is_completed
         self.category = category
         self.mondayTime = 0
         self.tuesdayTime = 0

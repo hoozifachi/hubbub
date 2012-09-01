@@ -11,8 +11,8 @@ class ColumnDescriptor(object):
     '''
 
 
-    def __init__(self, field_id):
+    def __init__(self, field_id, verbose_name, comment):
         self.id = field_id
-        self.verbose_name = self.id.capitalize().replace('_', ' ')
-        self.comment = None
+        self.verbose_name = verbose_name
+        self.comment = comment
         
