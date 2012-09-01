@@ -10,6 +10,8 @@ from model import TaskView
 class MainWindow(QWidget):
     def __init__(self):
         super(MainWindow, self).__init__()
+        
+        
         self.layout = QVBoxLayout(self)
         
         self.grid = QTableView()
