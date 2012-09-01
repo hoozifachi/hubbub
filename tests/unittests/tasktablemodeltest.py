@@ -51,7 +51,22 @@ class TaskTableModelTest(unittest.TestCase):
         self.assertEqual('Friday', self.taskModel.headerData(6, Qt.Horizontal, Qt.DisplayRole))
         self.assertEqual('Saturday', self.taskModel.headerData(7, Qt.Horizontal, Qt.DisplayRole))
         self.assertEqual('Sunday', self.taskModel.headerData(8, Qt.Horizontal, Qt.DisplayRole))
-
+        
+        
+    def testGetTask1Data(self):
+        index = self.taskModel.createIndex(0, 0)
+        self.assertEqual('task1', self.taskModel.data(index, Qt.DisplayRole))
+        index = self.taskModel.createIndex(1, 0)
+        self.assertEqual('task2', self.taskModel.data(index, Qt.DisplayRole))
+        index = self.taskModel.createIndex(2, 0)
+        self.assertEqual('task3', self.taskModel.data(index, Qt.DisplayRole))
+        index = self.taskModel.createIndex(3, 0)
+        self.assertEqual('task4', self.taskModel.data(index, Qt.DisplayRole))
+        
+        
+    def testGetFlags(self):
+        index = self.taskModel.createIndex(0, 0)
+        self.assertEqual(Qt.ItemIsEnabled, self.taskModel.flags(index))
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
